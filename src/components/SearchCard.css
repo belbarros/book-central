@@ -1,0 +1,14 @@
+.title {
+    font-weight: 700;
+    font-size: large;
+}
+
+.author {
+    font-style: italic;
+}
+
+.search-card-inner {
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}

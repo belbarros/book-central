@@ -1,19 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import SearchCard from "../components/SearchCard";
+import Header from "../components/Header";
+import "./Home.css";
 
 export default function Home() {
   const [query, setQuery] = useState();
   const [data, setData] = useState();
-
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const response = await fetch('https://openlibrary.org/search.json?q=bobby');
-  //       const json = await response.json();
-  //       setData(json);
-  //       console.log(data);
-  //     };
-
-  //     fetchData();
-  //   }, []);
 
   const fetchSearch = async () => {
     const response = await fetch(
@@ -25,9 +17,12 @@ export default function Home() {
 
   return (
     <div>
-      <div>
+        <Header />
+    <div className="search-body">
+      <div className="search-div">
+        <label className="search-label">Search</label>
         <input
-          placeholder="Text"
+          className="search-input"
           onChange={(event) => setQuery(event.target.value)}
         />
         <button onClick={fetchSearch}>Search</button>
@@ -36,12 +31,12 @@ export default function Home() {
       <div>
         {data &&
           data.docs.map((info) => (
-            <div>
-              <p>{info.title}</p>
-              <p>{info.author_name}</p>
+            <div key={info.key} className="search-card">
+              <SearchCard info={info} />
             </div>
           ))}
       </div>
+    </div>
     </div>
   );
 }
